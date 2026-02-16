@@ -37,6 +37,7 @@ const store = (set) => ({
       toast.success(response.data.message || "Logout successfully");
       set({
         isAuthenticated: false,
+        user: null
       });
     }catch(error){
       toast.error(error);
