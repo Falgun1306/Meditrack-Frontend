@@ -72,6 +72,6 @@ const store = (set)=>({
 
 });
 
-const useMedicineStore = create(persist(store));
+const useMedicineStore = create((store));
 
 export default useMedicineStore;

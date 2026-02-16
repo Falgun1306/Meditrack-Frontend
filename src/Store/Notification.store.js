@@ -33,6 +33,6 @@ const store = (set)=>({
     }
 })
 
-const useNotificationStore = create(persist(store));
+const useNotificationStore = create((store));
 
 export default useNotificationStore;
