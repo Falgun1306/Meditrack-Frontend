@@ -4,43 +4,38 @@ import { toast } from 'react-toastify';
 
 const store = (set) => ({
   isAuthenticated: false,
-  setIsAuthenticated: (value) => {
-    set({
-      isAuthenticated: value
-    })
-  },
-
   user: null,
+  isCheckingAuth: true,
+
   checkAuth: async () => {
     try {
       const response = await axiosInstance.get('/user/me');
       set({
         isAuthenticated: true,
-        user: response.data.user
+        user: response.data.user,
+        isCheckingAuth: false
       });
     } catch {
       set({
         isAuthenticated: false,
-        user: null
+        user: null,
+        isCheckingAuth: false
       });
     }
   },
 
   logout: async () => {
     try {
-      const response = await axiosInstance.post('/user/logout');
-
-      // console.log(response);
-
-      toast.success(response.data.message || "Logout successfully");
+      await axiosInstance.post('/user/logout');
       set({
         isAuthenticated: false,
+        user: null
       });
-    }catch(error){
-      toast.error(error);
+    } catch (error) {
+      toast.error(error.message);
     }
   }
-})
+});
 
 const AuthStore = create((store));
 
