@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { axiosInstance } from '../utilities/axiosInstance.js';
 import { toast } from 'react-toastify';
+import { persist } from 'zustand/middleware';
 
 const store = (set) => ({
   isAuthenticated: false,
@@ -42,6 +43,6 @@ const store = (set) => ({
   }
 })
 
-const AuthStore = create((store));
+const AuthStore = create(persist(store));
 
 export default AuthStore;

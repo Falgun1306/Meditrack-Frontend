@@ -18,6 +18,7 @@ const DashboardPage = () => {
     if (members.length === 0) {
       fetchMember();
     }
+    
     fetchAllMedicines();
     fetchAllNotifications();
   }, []);
