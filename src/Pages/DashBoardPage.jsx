@@ -5,15 +5,21 @@ import Header from "../Components/Header";
 import useFamilyStore from "../Store/FamilyMembers.store";
 import { useEffect } from "react";
 import Notification_overview from "../Components/Notification_overview";
+import useMedicineStore from "../Store/Medicine.store";
+import useNotificationStore from "../Store/Notification.store";
 
 const DashboardPage = () => {
   const members = useFamilyStore((state) => state.members);
   const fetchMember = useFamilyStore((state) => state.fetchMember);
+  const fetchAllMedicines = useMedicineStore((state)=>state.fetchAllMedicines);
+  const fetchAllNotifications = useNotificationStore((state)=>state.fetchAllNotifications);
 
   useEffect(() => {
     if (members.length === 0) {
       fetchMember();
     }
+    fetchAllMedicines();
+    fetchAllNotifications();
   }, []);
 
   return (
