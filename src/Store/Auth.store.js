@@ -44,6 +44,6 @@ const store = (set) => ({
   }
 })
 
-const AuthStore = create(persist(store));
+const AuthStore = create((store));
 
 export default AuthStore;
