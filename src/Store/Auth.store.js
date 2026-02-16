@@ -20,7 +20,7 @@ const store = (set) => ({
         isAuthenticated: true,
         user: response.data.user
       });
-    } catch {
+    } catch (error) {
       set({
         isAuthenticated: false,
         user: null
@@ -45,6 +45,9 @@ const store = (set) => ({
   }
 })
 
-const AuthStore = create(persist(store));
+const AuthStore = create(persist(store, {
+  name: 'auth-storage',
+  partialize: (state) => ({ user: state.user }) // Only persist user data, NOT isAuthenticated
+}));
 
 export default AuthStore;

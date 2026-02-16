@@ -6,10 +6,25 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const checkAuth = AuthStore(state => state.checkAuth);
+  const [isAuthChecking, setIsAuthChecking] = useState(true);
 
   useEffect(() => {
-    checkAuth();
-  }, []);
+    const verifyAuth = async () => {
+      await checkAuth();
+      setIsAuthChecking(false);
+    };
+    verifyAuth();
+  }, [checkAuth]);
+
+  // Show loader while checking authentication
+  if (isAuthChecking) {
+    return (
+      <div className='text-black flex items-center justify-center h-screen'>
+        <div>Verifying authentication...</div>
+      </div>
+    );
+  }
+
   return (
     <div className='text-black'>
       <Outlet />
