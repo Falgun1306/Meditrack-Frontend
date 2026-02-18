@@ -50,14 +50,13 @@ const AddMedicine = () => {
         medicineData
       );
 
-      toast.success(
-        response.data.message || "Medicine added successfully"
-      );
-
       await fetchMedicines(memberId);
       await fetchAllMedicine();
 
       setShowAddMedicine(false);
+      toast.success(
+        response.data.message || "Medicine added successfully"
+      );
     } catch (error) {
       toast.error(
         error?.response?.data?.message ||

@@ -38,10 +38,9 @@ const AddMember = () => {
                 age: Number(memberData.age),
             });
 
-            toast.success(response.data.message || "Member added successfully");
-
             setShowAddMember(false);
             await fetchMember();
+            toast.success(response.data.message || "Member added successfully");
         } catch (error) {
             toast.error(error?.response?.data?.message || "Check member details");
         } finally {

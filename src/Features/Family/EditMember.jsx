@@ -36,12 +36,11 @@ const EditMember = ({ member, setshowEditMember }) => {
                 }
             );
 
+            setshowEditMember(false);
+            await fetchMember();
             toast.success(
                 response.data.message || "Member Updated Successfully"
             );
-
-            setshowEditMember(false);
-            await fetchMember();
         } catch (error) {
             toast.error(
                 error?.response?.data?.message || "Check Member Details"

@@ -44,13 +44,12 @@ const EditMedicine = ({ selectedMedicine, setshowEditMedicine }) => {
         medicineData
       );
 
+      setshowEditMedicine(false);
+      await fetchMedicines(memberId);
       toast.success(
         response.data.message ||
           "Medicine Updated Successfully"
       );
-
-      setshowEditMedicine(false);
-      await fetchMedicines(memberId);
     } catch (error) {
       toast.error(
         error?.response?.data?.message ||
