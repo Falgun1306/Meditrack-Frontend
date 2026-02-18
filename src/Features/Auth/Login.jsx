@@ -7,8 +7,13 @@ import useFamilyStore from "../../Store/FamilyMembers.store.js";
 import useMedicineStore from "../../Store/Medicine.store.js";
 import useNotificationStore from "../../Store/Notification.store.js";
 import { toast } from "react-toastify";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+
+
 
 const Login = () => {
+    const [showPassword, setShowPassword] = useState(false);
+
     const inputStyle =
         "w-full px-4 py-3 mb-3 rounded-full bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400";
 
@@ -17,6 +22,7 @@ const Login = () => {
     const fetchMember = useFamilyStore(state => state.fetchMember);
     const fetchAllMedicines = useMedicineStore(state => state.fetchAllMedicines);
     const fetchAllNotifications = useNotificationStore(state => state.fetchAllNotifications);
+
     // const login = AuthStore((state) => state.login);
 
 
@@ -42,11 +48,11 @@ const Login = () => {
                 password: loginData.password
             })
 
-            toast.success(response.data.message || "Login Successfull");
             fetchMember();
             fetchAllMedicines();
             fetchAllNotifications();
             setIsAuthenticated(true);
+            toast.success(response.data.message || "Login Successfull");
             navigate('/');
         } catch (error) {
             console.log("something went wrong: ", error.message);
@@ -114,14 +120,24 @@ const Login = () => {
                         />
 
                         {/* Password */}
-                        <input
-                            type="password"
-                            name="password"
-                            value={loginData.password}
-                            placeholder="Password"
-                            className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                            onChange={handleInputChange}
-                        />
+                        <div className="relative">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                value={loginData.password}
+                                placeholder="Password"
+                                onChange={handleInputChange}
+                                className="w-full px-5 py-3 pr-12 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                            />
+
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                            >
+                                {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+                            </button>
+                        </div>
 
                         {/* Login Button */}
                         <button
@@ -146,8 +162,8 @@ const Login = () => {
 
                 </div>
 
-            </div>
-        </div>
+            </div >
+        </div >
     );
 
 }

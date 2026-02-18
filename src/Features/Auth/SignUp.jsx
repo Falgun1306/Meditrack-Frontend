@@ -3,9 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { axiosInstance } from "../../utilities/axiosInstance";
 import { toast } from "react-toastify";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const SignUp = () => {
     const nevigate = useNavigate();
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
     const inputStyle =
         "w-full px-4 py-3 mb-3 rounded-full bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400";
     const navigate = useNavigate();
@@ -109,7 +114,18 @@ const SignUp = () => {
                             name="phoneNumber"
                             value={signUpData.phoneNumber}
                             placeholder="Phone Number"
-                            onChange={handleInputChange}
+                            maxLength={10}
+                            inputMode="numeric"
+                            pattern="[0-9]*"
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                if (/^\d{0,10}$/.test(value)) {
+                                    setsignUpData((prev) => ({
+                                        ...prev,
+                                        phoneNumber: value,
+                                    }));
+                                }
+                            }}
                             className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                         />
 
@@ -122,23 +138,50 @@ const SignUp = () => {
                             className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                         />
 
-                        <input
-                            type="password"
-                            name="password"
-                            value={signUpData.password}
-                            placeholder="Password"
-                            onChange={handleInputChange}
-                            className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                        />
+                        <div className="relative">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                value={signUpData.password}
+                                placeholder="Password"
+                                onChange={handleInputChange}
+                                className="w-full px-5 py-3 pr-12 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                            />
 
-                        <input
-                            type="password"
-                            name="confirmPassword"
-                            value={signUpData.confirmPassword}
-                            placeholder="Confirm Password"
-                            onChange={handleInputChange}
-                            className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                        />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                            >
+                                {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+                            </button>
+                        </div>
+
+                        <div className="relative">
+                            <input
+                                type={showConfirmPassword ? "text" : "password"}
+                                name="confirmPassword"
+                                value={signUpData.confirmPassword}
+                                placeholder="Confirm Password"
+                                onChange={handleInputChange}
+                                className="w-full px-5 py-3 pr-12 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                            />
+
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    setShowConfirmPassword(!showConfirmPassword)
+                                }
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                            >
+                                {showConfirmPassword ? (
+                                    <FiEyeOff size={20} />
+                                ) : (
+                                    <FiEye size={20} />
+                                )}
+                            </button>
+                        </div>
+
 
                         <button
                             type="submit"
@@ -161,8 +204,8 @@ const SignUp = () => {
 
                 </div>
 
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
 
