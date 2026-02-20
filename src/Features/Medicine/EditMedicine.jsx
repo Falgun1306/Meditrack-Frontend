@@ -91,9 +91,10 @@ const EditMedicine = ({ selectedMedicine, setshowEditMedicine }) => {
           Update Medicine
         </h2>
 
-        <form onSubmit={handleUpdate} className="space-y-5">
+        <form onSubmit={handleUpdate} className="space-y-4">
 
           {/* Medicine Name */}
+          <p className="text-sm opacity-[0.5]">Medicine Name</p>
           <input
             type="text"
             name="medicineName"
@@ -111,6 +112,7 @@ const EditMedicine = ({ selectedMedicine, setshowEditMedicine }) => {
           />
 
           {/* Dose Per Day */}
+          <p className="text-sm opacity-[0.5]">Dose Per Day</p>
           <input
             type="number"
             name="dosePerDay"
@@ -128,6 +130,7 @@ const EditMedicine = ({ selectedMedicine, setshowEditMedicine }) => {
           />
 
           {/* Dose Unit */}
+          <p className="text-sm opacity-[0.5]">Select Dose Unit</p>
           <select
             name="doseUnit"
             value={medicineData.doseUnit}
@@ -148,6 +151,7 @@ const EditMedicine = ({ selectedMedicine, setshowEditMedicine }) => {
           </select>
 
           {/* Total Quantity */}
+          <p className="text-sm opacity-[0.5]">Total Quantity</p>
           <input
             type="number"
             name="totalQuantity"
@@ -165,6 +169,7 @@ const EditMedicine = ({ selectedMedicine, setshowEditMedicine }) => {
           />
 
           {/* Alert Before Days */}
+          <p className="text-sm opacity-[0.5]">Alert Before (Days)</p>
           <input
             type="number"
             name="alertBeforeDays"

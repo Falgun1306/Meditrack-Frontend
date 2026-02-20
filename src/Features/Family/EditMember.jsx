@@ -82,9 +82,10 @@ const EditMember = ({ member, setshowEditMember }) => {
                     Update Family Member
                 </h2>
 
-                <form onSubmit={handleUpdate} className="space-y-5">
+                <form onSubmit={handleUpdate} className="space-y-4">
 
                     {/* Name */}
+                    <p className="text-sm opacity-[0.5]">Update Member Name</p>
                     <input
                         type="text"
                         name="name"
@@ -102,6 +103,7 @@ const EditMember = ({ member, setshowEditMember }) => {
                     />
 
                     {/* Relation */}
+                    <p className="text-sm opacity-[0.5]">Relation</p>
                     <select
                         name="relation"
                         value={memberData.relation}
@@ -125,6 +127,7 @@ const EditMember = ({ member, setshowEditMember }) => {
                     </select>
 
                     {/* Age */}
+                    <p className="text-sm opacity-[0.5]">Update Member Age</p>
                     <input
                         type="number"
                         name="age"

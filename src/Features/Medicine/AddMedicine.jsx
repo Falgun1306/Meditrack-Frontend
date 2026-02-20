@@ -100,9 +100,10 @@ const AddMedicine = () => {
 
         <form
           onSubmit={handleAddMedicine}
-          className="space-y-5"
+          className="space-y-4"
         >
           {/* Medicine Name */}
+          <p className="text-sm opacity-[0.5]">Enter Medicine Name</p>
           <input
             type="text"
             name="medicineName"
@@ -120,6 +121,7 @@ const AddMedicine = () => {
           />
 
           {/* Dose Per Day */}
+          <p className="text-sm opacity-[0.5]">Dose Per day</p>
           <input
             type="number"
             name="dosePerDay"
@@ -137,6 +139,7 @@ const AddMedicine = () => {
           />
 
           {/* Dose Unit */}
+          <p className="text-sm opacity-[0.5]">Select Dose Unit</p>
           <select
             name="doseUnit"
             value={medicineData.doseUnit}
@@ -157,6 +160,7 @@ const AddMedicine = () => {
           </select>
 
           {/* Total Quantity */}
+          <p className="text-sm opacity-[0.5]">Total Quantity</p>
           <input
             type="number"
             name="totalQuantity"
@@ -174,6 +178,7 @@ const AddMedicine = () => {
           />
 
           {/* Alert Before Days */}
+          <p className="text-sm opacity-[0.5]">Alert Before (Days)</p>
           <input
             type="number"
             name="alertBeforeDays"

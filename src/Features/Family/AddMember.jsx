@@ -80,9 +80,10 @@ const AddMember = () => {
                     Add Family Member
                 </h2>
 
-                <form onSubmit={handleAddMember} className="space-y-5">
+                <form onSubmit={handleAddMember} className="space-y-4">
 
                     {/* Name */}
+                    <p className="text-sm opacity-[0.5]">Enter Member Name</p>
                     <input
                         type="text"
                         name="name"
@@ -100,6 +101,7 @@ const AddMember = () => {
                     />
 
                     {/* Relation */}
+                    <p className="text-sm opacity-[0.5]">Relation</p>
                     <select
                         name="relation"
                         value={memberData.relation}
@@ -123,6 +125,7 @@ const AddMember = () => {
                     </select>
 
                     {/* Age */}
+                    <p className="text-sm opacity-[0.5]">Enter Member Age</p>
                     <input
                         type="number"
                         name="age"
