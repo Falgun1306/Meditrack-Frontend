@@ -5,6 +5,7 @@ import useMedicineStore from "../Store/Medicine.store.js";
 import { useEffect, useState } from "react";
 import EditMedicine from "../Features/Medicine/EditMedicine.jsx";
 import MedicineModal from "../Components/WrappersComponents/MedicineModal.jsx";
+import AddDoseTiming from "../Features/Medicine/AddDoseTiming.jsx";
 
 const MedicinePage = () => {
   const fetchMedicine = useMedicineStore((state) => state.fetchMedicines);
@@ -13,6 +14,7 @@ const MedicinePage = () => {
 
   const [selectedMedicine, setSelectedMedicine] = useState(null);
   const [showEditMedicine, setShowEditMedicine] = useState(false);
+  const [showAddTiming, setShowAddTiming] = useState(false);
 
   useEffect(() => {
     if (memberId) {
@@ -31,6 +33,7 @@ const MedicinePage = () => {
         <MedicineList
           setSelectedMedicine={setSelectedMedicine}
           setShowEditMedicine={setShowEditMedicine}
+          setShowAddTiming = {setShowAddTiming}
         />
       </div>
 
@@ -46,6 +49,14 @@ const MedicinePage = () => {
           setshowEditMedicine={setShowEditMedicine}
         />
       )}
+
+      {showAddTiming && ( 
+        <AddDoseTiming 
+          selectedMedicine = {selectedMedicine}
+          onClose = {setShowAddTiming}
+        />
+      )
+      }
 
     </div>
   );

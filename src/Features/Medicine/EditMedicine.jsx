@@ -20,7 +20,8 @@ const EditMedicine = ({ selectedMedicine, setshowEditMedicine }) => {
     familyMemberId: memberId,
     memberName: memberName,
     medicineName: selectedMedicine?.medicineName || "",
-    dosePerDay: selectedMedicine?.dosePerDay || "",
+    doseAtATime: selectedMedicine?.doseAtATime || "",
+    NumberOfDose: selectedMedicine?.NumberOfDose || "",
     doseUnit: selectedMedicine?.doseUnit || "",
     totalQuantity: selectedMedicine?.totalQuantity || "",
     alertBeforeDays: selectedMedicine?.alertBeforeDays || "",
@@ -91,7 +92,7 @@ const EditMedicine = ({ selectedMedicine, setshowEditMedicine }) => {
           Update Medicine
         </h2>
 
-        <form onSubmit={handleUpdate} className="space-y-4">
+        <form onSubmit={handleUpdate} className="space-y-2">
 
           {/* Medicine Name */}
           <p className="text-sm opacity-[0.5]">Medicine Name</p>
@@ -112,12 +113,29 @@ const EditMedicine = ({ selectedMedicine, setshowEditMedicine }) => {
           />
 
           {/* Dose Per Day */}
-          <p className="text-sm opacity-[0.5]">Dose Per Day</p>
+          <p className="text-sm opacity-[0.5]">Dose at a time</p>
           <input
             type="number"
-            name="dosePerDay"
-            placeholder="Dose Per Day"
-            value={medicineData.dosePerDay}
+            name="doseAtATime"
+            placeholder="Dose at a Time"
+            value={medicineData.doseAtATime}
+            onChange={handleInputChange}
+            className="
+              w-full px-5 py-3 
+              rounded-xl 
+              border border-gray-300 
+              focus:outline-none 
+              focus:ring-2 focus:ring-blue-500
+              transition
+            "
+          />
+
+          <p className="text-sm opacity-[0.5]">Number of doeses per day</p>
+          <input
+            type="number"
+            name="NumberOfDose"
+            placeholder="Number of doeses per day"
+            value={medicineData.NumberOfDose}
             onChange={handleInputChange}
             className="
               w-full px-5 py-3 

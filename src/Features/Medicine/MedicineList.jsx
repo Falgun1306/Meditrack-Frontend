@@ -1,13 +1,13 @@
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteSweep } from "react-icons/md";
-import { FaRegCircleStop } from "react-icons/fa6";
+import { FaStopwatch } from "react-icons/fa6";
 import useMedicineStore from "../../Store/Medicine.store";
 import { axiosInstance } from "../../utilities/axiosInstance";
 import useUIStore from "../../Store/UI.store";
 import Loader from "../../Components/Loader";
 import { toast } from "react-toastify";
 
-const MedicineList = ({ setSelectedMedicine, setShowEditMedicine }) => {
+const MedicineList = ({ setSelectedMedicine, setShowEditMedicine, setShowAddTiming }) => {
     const medicines = useMedicineStore(state => state.medicines);
     const fetchMedicines = useMedicineStore(state => state.fetchMedicines);
     const setShowAddMedicine = useMedicineStore(state => state.setShowAddMedicine);
@@ -37,6 +37,11 @@ const MedicineList = ({ setSelectedMedicine, setShowEditMedicine }) => {
     const handleEditMedicine = (editableMember) => {
         setSelectedMedicine(editableMember);
         setShowEditMedicine(true);
+    }
+
+    const handleAddTiming = (Medicine) => {
+        setSelectedMedicine(Medicine);
+        setShowAddTiming(true);
     }
 
     return isLoading ? (
@@ -94,8 +99,8 @@ const MedicineList = ({ setSelectedMedicine, setShowEditMedicine }) => {
                                 {/* Status Badge */}
                                 <span
                                     className={`text-xs px-3 py-1 rounded-full font-medium ${medicine.status === "active"
-                                            ? "bg-green-100 text-green-700"
-                                            : "bg-gray-200 text-gray-600"
+                                        ? "bg-green-100 text-green-700"
+                                        : "bg-gray-200 text-gray-600"
                                         }`}
                                 >
                                     {medicine.status}
@@ -124,6 +129,19 @@ const MedicineList = ({ setSelectedMedicine, setShowEditMedicine }) => {
                                     onClick={() => handleEditMedicine(medicine)}
                                 >
                                     <FaEdit /> Edit
+                                </button>
+
+                                <button
+                                    className="
+                  flex items-center gap-1
+                  px-3 py-2 text-sm
+                  rounded-full 
+                  bg-blue-400 hover:bg-blue-500 
+                  text-white transition
+                "
+                                    onClick={() => handleAddTiming(medicine)}
+                                >
+                                    <FaStopwatch /> Timing
                                 </button>
 
                                 <button
